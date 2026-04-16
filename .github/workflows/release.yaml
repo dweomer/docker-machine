@@ -73,6 +73,7 @@ jobs:
           prime-username: ${{ env.PRIME_STG_REGISTRY_USERNAME }}
           prime-password: ${{ env.PRIME_STG_REGISTRY_PASSWORD }}
       - name: Build and push image to Prime Prod Registry
+        if: ${{ !contains(github.ref_name, '-rc') }}
         uses: rancher/ecm-distro-tools/actions/publish-image@dccc58c2e8e9c059aeab6229b70d2f0b1e977625 # master
         with:
           image: machine
